@@ -4,13 +4,13 @@ import java.util.Random;
 public class GamePlayer // game function
 {
   //declare variables
-  private int playerOneScore;
-  private int playerTwoScore;
+  private int playerOneScore = 0;
+  private int playerTwoScore = 0;
   private int piecesRemoved;
   private int playerInput;
-  private int currentPlayer;
-  private bool gameRun = true;
-  private bool roundRun = true;
+  private int currentPlayer = 0;
+  private boolean gameRun = true;
+  private boolean roundRun = true;
   //random number class
   private Random rando = new Random();
   //board generation class
@@ -18,58 +18,47 @@ public class GamePlayer // game function
   //scanner class
   private Scanner sc = new Scanner(System.in);
 
-  public void setupVars()
-  {
-    gameRun = true;
-    roundRun = true;
-  }
-
   public void playerMove() //code for player making move
   {
-    System.out.print("Your turn, ");
-    System.out.println(currentPlayer);
     System.out.print("There are ");
     System.out.print(nimGame.printBoard());
-    System.out.print(" pieces left on the board.");
+    System.out.print(" pieces left on the board. ");
+    System.out.print("How many pieces do you want to remove, ");
+    if (currentPlayer == 1)
+    {
+      System.out.println("Player One?");
+    }
+    if (currentPlayer == 2)
+    {
+      System.out.println("Player Two?");
+    }
     piecesRemoved = sc.nextInt();
     nimGame.removePiece(piecesRemoved);
   }
 
   public void startGame() //starts a round of nim
   {
-    System.out.println("Start round of nim? (1) yes or (2) no ");
+    System.out.println("\n(1) Start round of NIM, (2) get scores, (3) quit");
     playerInput = sc.nextInt();
     if (playerInput == 1)
     {
       nimGame.generateBoard();
-      currentPlayer = rando.nextInt(2);
+      while (currentPlayer == 0)
+      {
+        currentPlayer = rando.nextInt(2);
+      }
       roundRun = true;
     }
     if (playerInput == 2)
     {
       roundRun = false;
-      System.out.print(player);
     }
-    else
+    if (playerInput == 3)
     {
-      System.out.println("─────────▄──────────────▄"); //le funny doge
-      System.out.println("────────▌▒█───────────▄▀▒▌");
-      System.out.println("────────▌▒▒▀▄───────▄▀▒▒▒▐");
-      System.out.println("───────▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐");
-      System.out.println("─────▄▄▀▒▒▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐");
-      System.out.println("───▄▀▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▀██▀▒▌");
-      System.out.println("──▐▒▒▒▄▄▄▒▒▒▒▒▒▒▒▒▒▒▒▒▀▄▒▒▌");
-      System.out.println("──▌▒▒▐▄█▀▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐");
-      System.out.println("─▐▒▒▒▒▒▒▒▒▒▒▒▌██▀▒▒▒▒▒▒▒▒▀▄▌");
-      System.out.println("─▌▒▀▄██▄▒▒▒▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌");
-      System.out.println("─▌▀▐▄█▄█▌▄▒▀▒▒▒▒▒▒░░░░░░▒▒▒▐");
-      System.out.println("▐▒▀▐▀▐▀▒▒▄▄▒▄▒▒▒▒▒░░░░░░▒▒▒▒▌");
-      System.out.println("▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒░░░░░░▒▒▒▐");
-      System.out.println("─▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒▒▒░░░░▒▒▒▒▌");
-      System.out.println("─▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▐");
-      System.out.println("──▀▄▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▄▒▒▒▒▌");
-      System.out.println("────▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀");
-      System.out.println("───▐▀▒▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀");
+      System.out.println("Thanks for playing THE GAME OF NIM!");
+      roundRun = false;
+      gameRun = false;
+      System.exit(0);
     }
   }
 
@@ -102,18 +91,18 @@ public class GamePlayer // game function
 
   public void printScores() //print out player scores
   {
-    System.out.print("Player one's score is ");
+    System.out.print("Player 1 score: ");
     System.out.println(playerOneScore);
-    System.out.print("Player two's score is ");
+    System.out.print("Player 2 score: ");
     System.out.println(playerTwoScore);
   }
 
-  public bool gameRunVar() //function the outputs the gameRun var
+  public boolean gameRunVar() //function the outputs the gameRun var
   {
     return gameRun;
   }
 
-  public bool roundRunVar() //function that outputs the roundRun var
+  public boolean roundRunVar() //function that outputs the roundRun var
   {
     return roundRun;
   }

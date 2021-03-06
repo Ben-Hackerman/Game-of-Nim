@@ -5,35 +5,35 @@ public class Board
 {
   private int size; // size is variable 
 
-  void generateBoard()
+  public void generateBoard() //create the board
   {
     Random randy = new Random();
-    while (size >= 10)
+    while (size <= 10)
     {
       size = randy.nextInt(50);
     }
   }
 
-  bool removePiece(Integer remove) //code to remove pieces from board
+  public boolean removePiece(Integer remove) //code to remove pieces from board
   {
-    if (remove > size)
+    if (remove > 1)
     {
-      return false;
-    }
-    if ((size / 2) > remove)
-    {
-      return false;
+      if (remove > (size / 2))
+      {
+        System.out.println("Too many pieces! You can only remove one half of the pile or less!");
+        return false;
+      }
     }
     size = size - remove;
     return true;
   }
 
-  int printBoard() //export out board
+  public int printBoard() //export out board
   {
     return size;
   }
 
-  bool checkEnd() //check if game has been won
+  public boolean checkEnd() //check if game has been won
   {
     if (size <= 0)
     {

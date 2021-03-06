@@ -1,15 +1,13 @@
 /*
  *   gamer of nim
  */
-import java.util.Random;
-import java.util.Scanner;
 
 public class NimGamer
 {
   public static void main(String[] args) 
   {
     GamePlayer nimGamer = new GamePlayer();
-    nimGamer.setupVars();
+    System.out.println("WELCOME TO THE GAME OF NIM!!! \n");
     while (nimGamer.gameRunVar()) // game loop
     {
       nimGamer.startGame();
