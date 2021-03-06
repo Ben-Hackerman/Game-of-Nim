@@ -18,7 +18,7 @@ public class GamePlayer // game function
   //scanner class
   private Scanner sc = new Scanner(System.in);
 
-  public void playerMove() //code for player making move
+  private void playerMove() //code for player making move
   {
     System.out.print("There are ");
     System.out.print(nimGame.printBoard());
@@ -36,7 +36,7 @@ public class GamePlayer // game function
     nimGame.removePiece(piecesRemoved);
   }
 
-  public void startGame() //starts a round of nim
+  private void startGame() //starts a round of nim
   {
     System.out.println("\n(1) Start round of NIM, (2) get scores, (3) quit");
     playerInput = sc.nextInt();
@@ -62,7 +62,7 @@ public class GamePlayer // game function
     }
   }
 
-  public void checkWin() //check if board is empty
+  private void checkWin() //check if board is empty
   {
     if(nimGame.checkEnd() == true)
     {
@@ -75,6 +75,7 @@ public class GamePlayer // game function
       {
         playerOneScore++;
       }
+      this.printScores();
     }
     if(nimGame.checkEnd() == false)
     {
@@ -89,7 +90,7 @@ public class GamePlayer // game function
     }
   }
 
-  public void printScores() //print out player scores
+  private void printScores() //print out player scores
   {
     System.out.print("Player 1 score: ");
     System.out.println(playerOneScore);
@@ -97,13 +98,27 @@ public class GamePlayer // game function
     System.out.println(playerTwoScore);
   }
 
-  public boolean gameRunVar() //function the outputs the gameRun var
+  private boolean gameRunVar() //function the outputs the gameRun var
   {
     return gameRun;
   }
 
-  public boolean roundRunVar() //function that outputs the roundRun var
+  private boolean roundRunVar() //function that outputs the roundRun var
   {
     return roundRun;
+  }
+
+  public void play()
+  {
+    while (this.gameRunVar()) // game loop
+    {
+      this.startGame();
+      while (this.roundRunVar()) // round loop
+      {
+        this.playerMove();
+        this.checkWin();
+      }
+      this.printScores(); //print scores after each round
+    }
   }
 }
