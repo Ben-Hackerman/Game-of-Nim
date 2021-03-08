@@ -9,6 +9,8 @@ public class GamePlayer // game function
   private int piecesRemoved;
   private int playerInput;
   private int currentPlayer = 0;
+  private String playerOneName;
+  private String playerTwoName;
   private boolean gameRun = true;
   private boolean roundRun = true;
   //random number class
@@ -18,6 +20,14 @@ public class GamePlayer // game function
   //scanner class
   private Scanner sc = new Scanner(System.in);
 
+  public GamePlayer()
+  {
+    System.out.println("What is your name, Player One?");
+    playerOneName = sc.next();
+    System.out.println("What is your name, Player Two?");
+    playerTwoName = sc.next();
+  }
+
   private void playerMove() //code for player making move
   {
     System.out.print("There are ");
@@ -26,11 +36,11 @@ public class GamePlayer // game function
     System.out.print("How many pieces do you want to remove, ");
     if (currentPlayer == 1)
     {
-      System.out.println("Player One?");
+      System.out.println(playerOneName);
     }
     if (currentPlayer == 2)
     {
-      System.out.println("Player Two?");
+      System.out.println(playerTwoName);
     }
     piecesRemoved = sc.nextInt();
     nimGame.removePiece(piecesRemoved);
@@ -92,9 +102,11 @@ public class GamePlayer // game function
 
   private void printScores() //print out player scores
   {
-    System.out.print("Player 1 score: ");
+    System.out.print(playerOneName);
+    System.out.print("'s score: ");
     System.out.println(playerOneScore);
-    System.out.print("Player 2 score: ");
+    System.out.print(playerTwoName);
+    System.out.print("'s score: ");
     System.out.println(playerTwoScore);
   }
 
