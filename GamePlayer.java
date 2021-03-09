@@ -55,7 +55,7 @@ public class GamePlayer // game function
       nimGame.generateBoard();
       while (currentPlayer == 0)
       {
-        currentPlayer = rando.nextInt(2);
+        currentPlayer = rando.nextInt(3);
       }
       roundRun = true;
     }
@@ -65,6 +65,19 @@ public class GamePlayer // game function
     }
     if (playerInput == 3)
     {
+      System.out.print("Winner is: ");
+      if (playerOneScore > playerTwoScore)
+      {
+        System.out.println(playerOneName);
+      }
+      else if (playerOneScore < playerTwoScore)
+      {
+        System.out.println(playerTwoName);
+      }
+      else
+      {
+        System.out.println("Nobody! It was a tie!");
+      }
       System.out.println("Thanks for playing THE GAME OF NIM!");
       roundRun = false;
       gameRun = false;
@@ -85,7 +98,6 @@ public class GamePlayer // game function
       {
         playerOneScore++;
       }
-      this.printScores();
     }
     if(nimGame.checkEnd() == false)
     {
@@ -93,7 +105,7 @@ public class GamePlayer // game function
       {
         currentPlayer = 2;
       }
-      if(currentPlayer == 2)
+      else if(currentPlayer == 2)
       {
         currentPlayer = 1;
       }
