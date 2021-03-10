@@ -42,8 +42,18 @@ public class GamePlayer // game function
     {
       System.out.println(playerTwoName);
     }
-    piecesRemoved = sc.nextInt();
-    nimGame.removePiece(piecesRemoved);
+    while (!(nimGame.removePiece(sc.nextInt())))
+    {
+      System.out.print("How many pieces do you want to remove, ");
+      if (currentPlayer == 1)
+      {
+        System.out.println(playerOneName);
+      }
+      if (currentPlayer == 2)
+      {
+        System.out.println(playerTwoName);
+      }
+    }
   }
 
   private void startGame() //starts a round of nim
